@@ -5,4 +5,5 @@ console.log("photo element:", photo);
     console.log("Current photo visibility:", photo.style.display);
     photo.style.display = photo.style.display === "none" ? "block" : "none";
     console.log("New photo visibility:", photo.style.display);
+    yumText.classList.remove("hidden");
   });
