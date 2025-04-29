@@ -1,106 +1,145 @@
 "use client";
+
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import "./globals.css";
 
+type Project = {
+  title: string;
+  description: string;
+  link: string;
+  preview: string;
+  category: "websites" | "games";
+};
 
-const projects = [
+const allProjects: Project[] = [
   {
     title: "The Hungry Llama",
     description: "A professional website for a food catering business.",
     link: "/projects/TheHungryLlama/src/index.html",
-    preview: "/projects/TheHungryLlama/src/index.html"
+    preview: "/projects/TheHungryLlama/src/index.html",
+    category: "websites",
   },
   {
     title: "TicTacToe",
     description: "Classic game with an optional twist.",
     link: "/projects/hand-in-2.0/index.html",
-    preview: "/projects/hand-in-2.0/index.html"
+    preview: "/projects/hand-in-2.0/index.html",
+    category: "games",
   },
   {
     title: "Clothing Website",
     description: "A stylish Flutter-based clothing store UI.",
     link: "/projects/web/index.html",
-    preview: "/projects/web/index.html"
-  }
+    preview: "/projects/web/index.html",
+    category: "websites",
+  },
+  {
+    title: " Basic Portfolio Website",
+    description: "A simple and clean portfolio.",
+    link: "/projects/backupOriginal/src/index.html",
+    preview: "/projects/backupOriginal/src/index.html",
+    category: "websites",
+  },
+{
+  title: " Cat facts!",
+  description: "A fun way to learn new things about cats!",
+  link: "/projects/tv10/index.html",
+  preview: "/projects/tv10/index.html",
+  category: "websites",
+},
+
 ];
 
-export default function Page() {
+const navItems = [
+  { label: "Home",     href: "/" },
+  { label: "Projects", href: "/projects" },
+  { label: "About",    href: "/about" },
+  { label: "Contact",  href: "/contact" },
+];
+
+export default function ProjectsPage() {
   const [dark, setDark] = useState(false);
-  const [active, setActive] = useState(0);
-
-
+  const [filter, setFilter] = useState<"websites" | "games">("websites");
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
+  const projects = allProjects.filter((p) => p.category === filter);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
-      <header className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Sakacogu Portfolio</h1>
-        <button
-          onClick={() => setDark(!dark)}
-          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
-        >
-          {dark ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
-      </header>
+    <main className="relative min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 text-white p-8">
+      <nav className="flex justify-center space-x-8 mb-4 text-lg">
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            prefetch={false}
+            className="hover:underline"
+          >
+            {item.label}
+          </Link>
+        ))}
+      </nav>
 
-      <section className="mb-8">
-        <motion.p
-          className="italic mb-2 text-lg"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-        </motion.p>
-      </section>
+      <div className="flex justify-center space-x-4 mb-8">
+        {(["websites", "games"] as const).map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setFilter(cat)}
+            className={`px-5 py-2 rounded-full font-medium transition 
+              ${filter === cat
+                ? "bg-white/40 text-black dark:text-white"
+                : "bg-white/20 text-white hover:bg-white/30"}`}
+          >
+            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+          </button>
+        ))}
+      </div>
 
-      <section className="flex flex-col lg:flex-row gap-6">
-        <div className="lg:w-1/3 flex flex-col gap-4">
-          {projects.map((proj, idx) => (
-            <div
-              key={idx}
-              onClick={() => setActive(idx)}
-              className={`p-4 rounded-lg cursor-pointer border ${
-                active === idx ? "border-blue-500" : "border-gray-300"
-              } bg-gray-50 dark:bg-gray-800`}
-            >
-              <h3 className="text-xl font-semibold mb-1">{proj.title}</h3>
-              <p className="text-sm mb-2">{proj.description}</p>
-              <a
+      <button
+        onClick={() => setDark((d) => !d)}
+        className="absolute top-4 right-4 p-2 rounded-full bg-white/20 backdrop-blur"
+        aria-label="Toggle dark mode"
+      >
+        {dark ? <Sun size={24} /> : <Moon size={24} />}
+      </button>
+
+      <div className="flex flex-col gap-12 items-center">
+        {projects.map((proj, idx) => (
+          <motion.div
+            key={idx}
+            className="w-full max-w-6xl p-4 bg-white/20 bg-gradient-to-br from-blue-600 to-purple-700 rounded-xl backdrop-blur-sm border border-white/30 shadow-lg"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <h2 className="text-2xl font-semibold mb-2">{proj.title}</h2>
+            <p className="mb-4 text-sm">{proj.description}</p>
+
+            <div className="w-full aspect-video max-w-6xl mx-auto rounded-lg overflow-hidden mb-4 border border-white/40">
+              <iframe
+                src={proj.preview}
+                title={`${proj.title} Preview`}
+                className="w-full h-full"
+              />
+            </div>
+
+              <motion.a
                 href={proj.link}
                 target="_blank"
                 rel="noreferrer"
-                className="text-blue-600 underline text-sm"
+                className="underline hover:text-gray-200"
+                whileHover={{ x: 4 }}
+                transition={{ type: "tween", duration: 0.2 }}
               >
                 Open in new tab ↗
-              </a>
-            </div>
-          ))}
-        </div>
-
-
-        <div className="lg:w-2/3 h-[600px]">
-          <iframe
-            src={projects[active].preview}
-            className="w-full h-full rounded-lg border shadow"
-            title={`${projects[active].title} Preview`}
-          />
-        </div>
-      </section>
-
-      <motion.div
-        className="fixed bottom-4 left-4 w-10 h-10 rounded-full z-50"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1, rotate: 360 }}
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        style={{ backgroundColor: dark ? "#000" : "#f43f5e" }}
-      />
+              </motion.a>
+          </motion.div>
+        ))}
+      </div>
     </main>
   );
 }
-

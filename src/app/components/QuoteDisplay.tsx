@@ -11,7 +11,7 @@ export default function QuoteDisplay({ quote, next }: Props) {
     }, []);
   
     return (
-      <div className="absolute bottom-12 text-center flex flex-col items-center gap-2">
+      <div className="absolute bottom-15 text-center flex flex-col items-center gap-2">
         <AnimatePresence mode="wait">
           {mounted && (
             <motion.p
@@ -28,7 +28,7 @@ export default function QuoteDisplay({ quote, next }: Props) {
         </AnimatePresence>
         <button
           onClick={next}
-          className="mt-2 px-4 py-1 bg-white/20 backdrop-blur rounded-full text-sm hover:bg-white/30 transition"
+          className=" absolute -bottom-10 px-4 py-1 bg-white/20 backdrop-blur rounded-full text-sm hover:bg-white/30 transition"
         >
           Next quote ↻
         </button>

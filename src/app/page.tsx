@@ -27,7 +27,7 @@ export default function HomePage(): JSX.Element {
           toggleDark={() => setDark(d => !d)}
         />
 
-        <p className="text-sm sm:text-lg md:text-m lg:text-xl absolute bottom-95 sm:bottom-90 md:bottom-80 lg:top-50">
+        <p className="text-sm sm:text-lg md:text-md lg:text-xl absolute bottom-75 sm:bottom-72 md:bottom-65 lg:top-50">
           You are lucky visitor nr. <strong>{visitorCount}</strong>!
         </p>
 
@@ -41,7 +41,7 @@ export default function HomePage(): JSX.Element {
       <ImageTextSwitcher
         variants={dragonVariants}
         className="
-          fixed
+          absolute
           top-25  sm:top-25   md:top-64    lg:top-42
           left-5  sm:left-10   md:left-6    lg:left-8
         "
@@ -55,7 +55,7 @@ export default function HomePage(): JSX.Element {
 <ImageTextSwitcher
        variants={bearVariants}
        className="
-       fixed flex flex-col-reverse
+       absolute flex flex-col-reverse
        bottom-60   sm:bottom-65     md:bottom-64    lg:bottom-64
        right-2     sm:right-6       md:right-6      lg:right-8
      "
