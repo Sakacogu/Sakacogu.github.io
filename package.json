@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next build && next export -o docs",
+    "export": "next build && next export docs",
     "postexport": "echo 'Built for GitHub Pages'",
-    "deploy": "gh-pages -d out"
+    "deploy":"echo"
   },
   "dependencies": {
     "framer-motion": "^12.9.2",
