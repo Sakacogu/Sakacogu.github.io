@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next build && next export docs",
+    "export": "npm run build && rm -rf docs && mv out docs",
     "postexport": "echo 'Built for GitHub Pages'",
     "deploy":"echo"
   },
