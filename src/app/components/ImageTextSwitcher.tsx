@@ -37,7 +37,7 @@ export default function ImageTextSwitcher({
       className={`${className} cursor-pointer select-none flex items-center gap-2`}
     >
       <img src={img} alt={text} {...imgProps} />
-      <span className="text-white font-medium text-3xl">{text}</span>
+      <span className="text-white font-medium lg:text-3xl md:text-xl sm:text-lg">{text}</span>
     </div>
   );
 }

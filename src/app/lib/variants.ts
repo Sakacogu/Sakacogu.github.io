@@ -4,7 +4,7 @@ import type { Variant as ImageTextVariant } from './../components/ImageTextSwitc
 export const dragonVariants: ImageTextVariant[] = [
   { img: 'photos/openEyes.png',   text: 'Hi, welcome!' },
   { img: 'photos/closedEyes.png', text: "I love your smile!❤️" },
-  { img: 'photos/openMouth.png',  text: "Have fun! Click away!😊" },
+  { img: 'photos/openMouth.png',  text: "Have fun!😊" },
 ];
 
 export const bearVariants: ImageTextVariant[] = [

@@ -27,7 +27,7 @@ export default function SkillsTicker(): JSX.Element {
 
 
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 1768);
+    const onResize = () => setIsMobile(window.innerWidth < 1268);
     onResize();
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
@@ -40,7 +40,7 @@ export default function SkillsTicker(): JSX.Element {
   const marqueeTransition: Transition = {
     repeat: Infinity,
     repeatType: 'loop',
-    duration: 28,
+    duration: 38,
     ease: 'linear',
   };
   const pingpongTransition: Transition = {
@@ -53,7 +53,7 @@ export default function SkillsTicker(): JSX.Element {
   if (isMobile) {
 
     return (
-      <div className="absolute bottom-80 left-0 w-full overflow-hidden whitespace-nowrap font-bold">
+      <div className="absolute bottom-50 left-0 w-full overflow-hidden whitespace-nowrap font-bold">
         <motion.div
           className="inline-flex"
           style={{ willChange: 'transform' }}
@@ -65,11 +65,11 @@ export default function SkillsTicker(): JSX.Element {
               key={`${s.label}-${idx}`}
               className="
                 inline-flex items-center
-                gap-2        sm:gap-2
-                px-7         sm:px-10
-                py-3         sm:py-2
-                mx-2         sm:mx-2
-                text-2xlg      sm:text-2xl
+              gap-1        sm:gap-2
+              px-2         sm:px-6
+              py-1         sm:py-2
+              mx-1         sm:mx-1
+              text-xs      sm:text-lg
                 border border-white rounded-full
                 bg-white/20 backdrop-blur-sm
                 cursor-pointer transition-transform duration-200
@@ -87,7 +87,7 @@ export default function SkillsTicker(): JSX.Element {
 
   return (
     <motion.div
-      className="absolute bottom-80 whitespace-nowrap font-semibold"
+      className="absolute bottom-50 whitespace-nowrap font-semibold"
       animate={{ x: ['-5%', '5%'] }}
       transition={pingpongTransition}
     >
@@ -100,10 +100,10 @@ export default function SkillsTicker(): JSX.Element {
           className="
             inline-flex items-center
             gap-1        sm:gap-2
-            px-2         sm:px-10
+            px-2         sm:px-6
             py-1         sm:py-2
-            mx-1         sm:mx-3
-            text-xs      sm:text-2xl
+            mx-1         sm:mx-1
+            text-xs      sm:text-lg
             border border-white rounded-full
             bg-white/20 backdrop-blur-sm
             cursor-pointer transition-transform duration-200

@@ -21,7 +21,7 @@ export default function HeadingShatter() {
             variants={crumbleVariants}
             initial="initial"
             animate={crumbled?'crumble':'initial'}
-            className="inline-block text-6xl font-extrabold"
+            className="inline-block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold"
           >{ch}</motion.span>
         ))}
       </motion.div>
@@ -30,13 +30,13 @@ export default function HeadingShatter() {
           variants={breakVariants}
           initial="initial"
           animate={broken?'brokenLeft':'initial'}
-          className="inline-block text-3xl font-light"
+          className="inline-block text-lg sm:text-xl md:text-2xl lg:text-3xl font-light"
         >{left}</motion.span>
         <motion.span
           variants={breakVariants}
           initial="initial"
           animate={broken?'brokenRight':'initial'}
-          className="inline-block text-3xl font-light"
+          className="inline-block text-lg sm:text-xl md:text-2xl lg:text-3xl font-light"
         >{right}</motion.span>
       </motion.div>
     </div>
