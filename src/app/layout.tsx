@@ -6,32 +6,29 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Sakacogu Portfolio",
+  title: "Sakacogu",
   description: "My personal developer portfolio",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-blue-500 to-purple-600 text-white`}
-      >
-        <div className="max-w-screen-lg mx-auto px-4">
-          {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+          <div className="max-w-screen-g mx-auto px-4">
+            {children}
+          </div>
         </div>
       </body>
     </html>
