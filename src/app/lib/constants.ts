@@ -1,7 +1,7 @@
 import type { Variants } from 'framer-motion';
 
 export const navItems = [
-  { label: 'Home',     href: '/' },
+  { label: 'Home',     href: '/' }, 
   { label: 'Projects', href: '/projects' },
   { label: 'About',    href: '/about' },
   { label: 'Contact',  href: '/contact' },
