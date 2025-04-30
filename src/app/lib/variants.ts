@@ -18,7 +18,7 @@ export const crumbleVariants: Variants = {
   initial: { opacity: 1, y: 0, rotate: 0 },
   crumble: (i: number) => ({
     opacity: 1,
-    y: 300 + Math.random() * 50,
+    y: 100 + Math.random() * 50,
     rotate: -90 + Math.random() * 180,
     transition: { delay: i * 0.04, duration: 0.8, ease: 'easeIn' },
   }),
