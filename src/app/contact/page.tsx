@@ -42,7 +42,7 @@ export default function ContactPage() {
       <section className="max-w-2xl mx-auto space-y-6">
         <h1 className="text-4xl font-extrabold">Contact Me</h1>
         <p className="text-lg">
-          I’d love to hear from you! Whether it's feedback, a project idea, or just a friendly hello,
+          I&apos;d love to hear from you! Whether it&apos;s feedback, a project idea, or just a friendly hello,
           drop me a line:
         </p>
         <ul className="space-y-2 text-lg">
