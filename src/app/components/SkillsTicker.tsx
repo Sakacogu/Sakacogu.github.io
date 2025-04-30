@@ -95,8 +95,8 @@ export default function SkillsTicker(): JSX.Element {
         <motion.span
           key={s.label}
           whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.95, rotate: -10 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+          whileTap={{ scale: 0.95, rotate: -50 }}
+          transition={{ type: 'spring', stiffness: 500, damping: 15 }}
           className="
             inline-flex items-center
             gap-1        sm:gap-2

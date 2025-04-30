@@ -44,7 +44,7 @@ const allProjects: Project[] = [
     category: "websites",
   },
 {
-  title: " Cat facts!",
+  title: " Cat facts API!",
   description: "A fun way to learn new things about cats!",
   link: "/projects/cats/src/app",
   preview: "/projects/cats/src/app",

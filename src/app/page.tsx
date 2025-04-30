@@ -28,7 +28,7 @@ export default function HomePage(): JSX.Element {
         />
 
         <p className="text-sm sm:text-lg md:text-md lg:text-xl absolute bottom-75 sm:bottom-72 md:bottom-65 lg:top-50">
-          You are lucky visitor nr. <strong>{visitorCount}</strong>!
+          You have reloaded this page <strong>{visitorCount}</strong> times!
         </p>
 
         <HeadingShatter />

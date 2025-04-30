@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   title: "Sakacogu",
   description: "My personal developer portfolio",
   viewport: "width=device-width, initial-scale=1",
+  icons: {
+    icon: '/corazon.png',
+  },
 };
 
 export default function RootLayout({
