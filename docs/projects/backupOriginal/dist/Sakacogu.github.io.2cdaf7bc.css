@@ -1,0 +1,407 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #333;
+  background-color: #f9f9f9;
+  font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.navbar {
+  z-index: 100;
+  background-color: #f4f9ff;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  display: flex;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 10px #0000001a;
+}
+
+.logo {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 30px;
+}
+
+.nav-links a {
+  color: #333;
+  font-weight: 500;
+  transition: color .3s;
+}
+
+.nav-links a:hover {
+  color: #2299ba;
+}
+
+.hero {
+  color: #f4f9ff;
+  text-align: center;
+  background: linear-gradient(135deg, #002751, #2299ba);
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  display: flex;
+}
+
+.hero-content {
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero h1 {
+  margin-bottom: 20px;
+  font-size: 3rem;
+}
+
+.hero p {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+}
+
+.btn {
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-weight: 600;
+  transition: all .3s;
+  display: inline-block;
+}
+
+.primary-btn {
+  color: #002751;
+  background-color: #f4f9ff;
+}
+
+.primary-btn:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px #0000001a;
+}
+
+section {
+  padding: 80px 0;
+}
+
+.section-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+  position: relative;
+}
+
+.section-title:after {
+  content: "";
+  background-color: #2299ba;
+  width: 80px;
+  height: 4px;
+  margin: 10px auto 0;
+  display: block;
+}
+
+.about-section {
+  background-color: #f4f9ff;
+}
+
+.about-content {
+  flex-wrap: wrap;
+  gap: 30px;
+  display: flex;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-text p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.skills {
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 15px;
+  min-width: 300px;
+  display: flex;
+}
+
+.skill-item {
+  color: #2299ba;
+  background-color: #f0f5ff;
+  border-radius: 20px;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-weight: 500;
+  display: flex;
+}
+
+.skill-item i {
+  font-size: 1.2rem;
+}
+
+.projects-section {
+  background-color: #e7f1fe;
+}
+
+.projects-grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  display: grid;
+}
+
+.project-card {
+  background-color: #fff;
+  border-radius: 10px;
+  transition: transform .3s, box-shadow .3s;
+  overflow: hidden;
+  box-shadow: 0 5px 15px #0000001a;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px #00000026;
+}
+
+.project-info {
+  justify-items: center;
+  padding: 25px;
+}
+
+.project-info h3 {
+  color: #2299ba;
+  margin-bottom: 15px;
+}
+
+.project-info p {
+  color: #666;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.project-tags {
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.project-tags span {
+  color: #2299ba;
+  background-color: #e6f2ff;
+  border-radius: 15px;
+  padding: 5px 12px;
+  font-size: .85rem;
+}
+
+.project-link {
+  color: #f40e0e;
+  background: linear-gradient(135deg, #002751, #2299ba);
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: background-color .3s;
+  display: inline-block;
+}
+
+.project-link:hover {
+  background-color: #2299ba;
+}
+
+.contact-section {
+  background-color: #fff;
+}
+
+.contact-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  flex-direction: column;
+  gap: 20px;
+  display: flex;
+}
+
+.contact-item {
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1rem;
+  display: flex;
+}
+
+.contact-item i {
+  color: #2299ba;
+  font-size: 1.5rem;
+}
+
+footer {
+  color: #fff;
+  text-align: center;
+  background-color: #333;
+  padding: 30px 0;
+}
+
+@media (width <= 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px 5%;
+  }
+
+  .nav-links {
+    margin-top: 15px;
+  }
+
+  .nav-links li {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (width <= 480px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .project-card {
+    min-width: 100%;
+  }
+}
+
+.projects-layout {
+  flex-direction: row;
+  gap: 30px;
+  display: flex;
+}
+
+.projects-list {
+  flex: 1;
+  max-width: 400px;
+}
+
+.project-preview {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  flex: 2;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.project-preview iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.project-card {
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.projects-grid-columns {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: 20px;
+  display: flex;
+  overflow-x: auto;
+}
+
+.project-column {
+  flex-direction: column;
+  flex: 33%;
+  min-width: 400px;
+  display: flex;
+}
+
+.project-preview {
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  height: 450px;
+  margin-top: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px #0000001a;
+}
+
+.project-preview iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.project-link {
+  color: #2299ba;
+  margin-top: 10px;
+  font-weight: 500;
+  text-decoration: underline;
+  display: inline-block;
+}
+
+.project-link:hover {
+  color: #002751;
+}
+
+@media (width <= 1000px) {
+  .projects-grid-columns {
+    flex-direction: column;
+  }
+
+  .project-column {
+    max-width: 100%;
+  }
+
+  .project-preview {
+    height: 24rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-preview iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+/*# sourceMappingURL=Sakacogu.github.io.2cdaf7bc.css.map */
