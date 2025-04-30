@@ -10,7 +10,7 @@ type Project = {
   title: string;
   description: string;
   link: string;
-  preview: string;
+  preview?: string;
   category: "websites" | "games";
 };
 
@@ -46,8 +46,8 @@ const allProjects: Project[] = [
 {
   title: " Cat facts!",
   description: "A fun way to learn new things about cats!",
-  link: "/projects/tv10/index.html",
-  preview: "/projects/tv10/index.html",
+  link: "/projects/cats/src/app",
+  preview: "/projects/cats/src/app",
   category: "websites",
 },
 
