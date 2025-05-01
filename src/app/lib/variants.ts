@@ -14,6 +14,18 @@ export const bearVariants: ImageTextVariant[] = [
   { img: 'photos/unimpressed.png', text: "What ever! 😒" },
 ];
 
+export const darkDragonVariants: ImageTextVariant[] = [
+  { img: 'photos/dragonFrown.png',   text: '...' },
+  { img: 'photos/dragonUnimpressed.png', text: "UGH leave me alone" },
+  { img: 'photos/dragonBack.png',  text: "Go away!" },
+];
+
+export const darkBearVariants: ImageTextVariant[] = [
+  { img: 'photos/bearSmiling.png',      text: "Hi cutiepie!" },
+  { img: 'photos/bearHappy.png',  text: "How are ya?" },
+  { img: 'photos/bearCute.png', text: "I love you" },
+];
+
 export const crumbleVariants: Variants = {
   initial: { opacity: 1, y: 0, rotate: 0 },
   crumble: (i: number) => ({
