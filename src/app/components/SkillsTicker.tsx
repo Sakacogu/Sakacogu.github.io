@@ -9,6 +9,7 @@ import {
   SiNodedotjs,
   SiFlutter,
   SiDart,
+  SiTypescript,
 } from 'react-icons/si';
 
 const skills = [
@@ -20,6 +21,7 @@ const skills = [
   { label: 'Node.js',     icon: <SiNodedotjs /> },
   { label: 'Flutter',     icon: <SiFlutter /> },
   { label: 'Dart',        icon: <SiDart /> },
+  { label: 'Typescript',  icon: <SiTypescript /> },
 ];
 
 export default function SkillsTicker(): JSX.Element {
@@ -100,7 +102,7 @@ export default function SkillsTicker(): JSX.Element {
           className="
             inline-flex items-center
             gap-1        sm:gap-2
-            px-2         sm:px-6
+            px-2         sm:px-4
             py-1         sm:py-2
             mx-1         sm:mx-1
             text-xs      sm:text-lg
