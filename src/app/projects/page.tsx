@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import "./globals.css";
+import DarkToggle from './DarkToggle';
+
 
 type Project = {
   title: string;
@@ -87,7 +89,8 @@ export default function ProjectsPage() {
   const projects = allProjects.filter((p) => p.category === filter);
 
   return (
-    <main className="relative min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 text-white p-8">
+    <main className={`relative min-h-screen bg-gradient-to-br
+          ${dark ? 'from-red-500 to-black' : 'from-blue-500 to-purple-600'} text-white p-8`}>
       <nav className="flex justify-center space-x-8 mb-4 text-lg">
         {navItems.map((item) => (
           <Link
@@ -116,6 +119,8 @@ export default function ProjectsPage() {
         ))}
       </div>
 
+      <DarkToggle dark={dark} toggleDark={() => setDark(d => !d)} />
+
       <button
         onClick={() => setDark((d) => !d)}
         className="absolute top-4 right-4 p-2 rounded-full bg-white/20 backdrop-blur"
@@ -135,8 +140,7 @@ export default function ProjectsPage() {
             <h2 className="text-2xl font-semibold mb-2">{proj.title}</h2>
             <p className="mb-4 text-sm">{proj.description}</p>
 
-            <div className="w-full aspect-video max-w-6xl mx-auto rounded-lg overflow-hidden mb-4 border border-white/40">
-              <iframe
+            <div className="hidden sm:block w-full aspect-video max-w-6xl mx-auto rounded-lg overflow-hidden mb-4 border border-white/40">              <iframe
                 src={proj.preview}
                 title={`${proj.title} Preview`}
                 className="w-full h-full"
