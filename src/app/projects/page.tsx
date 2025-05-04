@@ -59,6 +59,14 @@ const allProjects: Project[] = [
   category: "websites",
 },
 
+{
+  title: "Classic Minesweeper!",
+  description: "What a fun game!",
+  link: "/projects/minesweeper",
+  preview: "/projects/minesweeper",
+  category: "games",
+},
+
 ];
 
 const navItems = [
