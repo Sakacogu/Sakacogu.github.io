@@ -121,7 +121,11 @@ const MineSweeper: React.FC = () => {
         });
       }, 1000);
     }
-    return () => timerRef.current && clearInterval(timerRef.current);
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
   }, [started, gameEnded]);
 
   const initGame = (diff?: keyof typeof PRESETS) => {
