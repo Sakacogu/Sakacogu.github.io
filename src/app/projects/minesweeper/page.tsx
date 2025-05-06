@@ -74,7 +74,8 @@ const MineSweeper: React.FC = () => {
   const [points, setPoints]        = useState(0);
   const [started, setStarted]      = useState(false);
   const [gameEnded, setGameEnded]  = useState(false);
-  const [lastWin, setLastWin]       = useState(false); 
+  const [lastWin, setLastWin]       = useState(false);
+   
 
   const [showRules, setShowRules]       = useState(false);
   const [tile, setTile]                 = useState(40);
@@ -83,7 +84,8 @@ const MineSweeper: React.FC = () => {
   const [playerName, setPlayerName] = useState("");
   const [inputName, setInputName]   = useState("");
 
-  /* misc */
+  const longPressTimer = useRef<NodeJS.Timeout | null>(null);
+
   const timerRef = useRef<number | null>(null);
   const [leaderboard, setLeaderboard] =
     useState<Record<string, LBEntry[]>>({});
@@ -124,18 +126,22 @@ const MineSweeper: React.FC = () => {
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current);
+        timerRef.current = null;
       }
     };
   }, [started, gameEnded]);
 
-  const initGame = (diff?: keyof typeof PRESETS) => {
+  const initGame = (
+    diff?: keyof typeof PRESETS,
+    preservePoints: boolean = false   
+  ) => {
     const d = diff || difficulty;
     setDifficulty(d);
     const size = PRESETS[d].size;
     setBoardSize(size);
     setCells(generateCells(size, generateBombs(size, PRESETS[d].bombs)));
     setTime(0);
-    setPoints(0);
+    if (!preservePoints) setPoints(0);
     setStarted(false);
     setGameEnded(false);
     setLastWin(false);
@@ -219,6 +225,18 @@ const MineSweeper: React.FC = () => {
     if (checkWin(updated)) endGame(true);
   };
 
+  const toggleFlagAt = (idx: number) => {
+    if (gameEnded) return;
+    if (!started) setStarted(true);
+    setCells((g) =>
+      g.map((c) =>
+        c.index === idx && !c.isRevealed
+          ? { ...c, isFlagged: !c.isFlagged }
+          : c
+      )
+    );
+  };
+
   const toggleFlag = (e: React.MouseEvent, idx: number) => {
     e.preventDefault();
     if (gameEnded) return;
@@ -230,6 +248,30 @@ const MineSweeper: React.FC = () => {
           : c
       )
     );
+  };
+
+  const handlePointerDown = (idx: number) => (e: React.PointerEvent) => {
+    if (e.button !== 0) return;
+    if (gameEnded) return;
+    longPressTimer.current = setTimeout(() => {
+      toggleFlagAt(idx);
+      longPressTimer.current = null;
+    }, 100);
+  };
+
+  const cancelLongPress = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+      longPressTimer.current = null;
+    }
+  };
+
+  const handlePointerUp = (idx: number) => (e: React.PointerEvent) => {
+    if (e.button !== 0) return;
+    if (longPressTimer.current) {
+      cancelLongPress();
+      revealCell(idx);
+    }
   };
 
   const submitName = () => {
@@ -247,7 +289,7 @@ const MineSweeper: React.FC = () => {
       className="flex flex-col items-center p-4 sm:p-8 min-h-screen"
       style={{
         background:
-          "conic-gradient(from 180deg at 50% 50%, #ec4899, #8b5cf6, #6366f1, #ec4899)",
+          "conic-gradient(from 180deg at 50% 50%, #022c22, #1a2e05, #422006, #022c22)",
       }}
     >
       <h1 className="text-2xl sm:text-3xl font-bold mb-4">Minesweeper</h1>
@@ -270,7 +312,7 @@ const MineSweeper: React.FC = () => {
 
       <div className="flex gap-2 justify-center mb-4">
         <button
-          onClick={() => initGame()}
+          onClick={() => initGame(undefined, lastWin)}
           className="px-4 py-1 bg-blue-500 text-white rounded"
         >
           {gameEnded && lastWin ? "Keep going" : "Restart"}
@@ -293,8 +335,8 @@ const MineSweeper: React.FC = () => {
         <div className="mb-4 p-4 bg-gray-900 text-white rounded max-w-md">
           <h2 className="font-semibold mb-2">Rules</h2>
           <ul className="list-disc list-inside text-sm sm:text-base">
-            <li>Left‑click reveals a cell.</li>
-            <li>Right‑click flags/unflags a suspected mine.</li>
+            <li>Left-click reveals a cell.</li>
+            <li>Right-click/holding down flags/unflags a suspected mine.</li>
             <li>Numbers show adjacent mines; blanks auto‑expand.</li>
           </ul>
         </div>
@@ -388,7 +430,9 @@ const MineSweeper: React.FC = () => {
             {cells.map((cell) => (
               <div
                 key={cell.index}
-                onClick={() => revealCell(cell.index)}
+                onPointerDown={handlePointerDown(cell.index)}
+                onPointerUp  ={handlePointerUp(cell.index)}
+                onPointerLeave={cancelLongPress}
                 onContextMenu={(e) => toggleFlag(e, cell.index)}
                 className={`
                   border flex items-center justify-center select-none cursor-pointer
