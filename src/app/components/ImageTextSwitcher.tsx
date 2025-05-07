@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, JSX } from 'react';
+import React, { useState, useEffect, JSX } from 'react';
+
 
 export interface Variant {
   img: string;   
@@ -19,6 +20,13 @@ export default function ImageTextSwitcher({
   imgProps = {},
 }: Props): JSX.Element {
   const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    variants.forEach(v => {
+      const pre = new Image();
+      pre.src = v.img;
+    });
+  }, [variants]);
 
   const handleClick = () => {
     setIdx((i) => {
